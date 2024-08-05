@@ -8,7 +8,8 @@ export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getServerAuthSession();
 
-  void api.post.getLatest.prefetch();
+  // TODO: undo comment when db connection is added
+  // void api.post.getLatest.prefetch();
 
   return (
     <HydrateClient>
@@ -50,11 +51,17 @@ export default async function Home() {
               <p className="text-center text-2xl text-white">
                 {session && <span>Logged in as {session.user?.name}</span>}
               </p>
-              <Link
+              {/* <Link
                 href={session ? "/api/auth/signout" : "/api/auth/signin"}
                 className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
               >
                 {session ? "Sign out" : "Sign in"}
+              </Link> */}
+              <Link
+                href={"/easing-demo"}
+                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              >
+                {"Easing Demo"}
               </Link>
             </div>
           </div>
