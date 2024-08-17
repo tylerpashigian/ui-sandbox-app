@@ -18,7 +18,8 @@ const AnimatedIcon = () => {
     <button aria-label="Copy code snippet" onClick={like}>
       <AnimatePresence mode="wait" initial={false}>
         {liked ? (
-          <motion.div
+          <motion.span
+            className="block"
             key="heart-fill"
             variants={variants}
             initial="hidden"
@@ -26,9 +27,10 @@ const AnimatedIcon = () => {
             exit="hidden"
           >
             <IoHeart />
-          </motion.div>
+          </motion.span>
         ) : (
-          <motion.div
+          <motion.span
+            className="block"
             key="heart-outline"
             variants={variants}
             initial="hidden"
@@ -36,7 +38,7 @@ const AnimatedIcon = () => {
             exit="hidden"
           >
             <IoHeartOutline />
-          </motion.div>
+          </motion.span>
         )}
       </AnimatePresence>
     </button>
