@@ -1,5 +1,5 @@
 import FeedbackComponent from "../_components/ticket";
-import FeedbackComponentCSS from "../_components/course/ticket-classes";
+import FeedbackComponentCSS from "../_components/course/ticket-course";
 
 const PopoverDemo = () => {
   return (
