@@ -9,7 +9,7 @@ export default function AnimatedList() {
   const ref = useRef(null);
 
   useEffect(() => {
-    function onKeyDown(event: any) {
+    function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setActiveGame(null);
       }
@@ -20,7 +20,7 @@ export default function AnimatedList() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] py-2 text-white">
+    <div className="flex flex-col items-center justify-center py-2 text-black">
       <AnimatePresence>
         {activeGame ? (
           <>

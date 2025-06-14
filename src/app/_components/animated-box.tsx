@@ -1,7 +1,7 @@
-// components/AnimatedBox.tsx
 import { useState } from "react";
 
 import { motion } from "framer-motion";
+import useMeasure from "react-use-measure";
 
 import {
   Select,
@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
+import { Button } from "~/components/ui/button";
 
 const easingTypes = [
   { name: "ease-in-quad", value: "var(--ease-in-quad)" },
@@ -35,14 +36,6 @@ const easingTypes = [
   { name: "ease-in-out-back", value: "var(--east-in-out-back)" },
 ];
 
-// const easingTypes = [
-//   { name: "easeInOut", value: [0.42, 0, 0.58, 1] },
-//   { name: "easeIn", value: [0.42, 0, 1, 1] },
-//   { name: "easeOut", value: [0, 0, 0.58, 1] },
-//   { name: "easeInOutSine", value: [0.45, 0.05, 0.55, 0.95] },
-//   { name: "easeInOutQuad", value: [0.455, 0.03, 0.515, 0.955] },
-// ];
-
 const AnimatedBox = () => {
   const [easing, setEasing] = useState(easingTypes[0]?.value);
   const [isToggled, setIsToggled] = useState(false);
@@ -51,10 +44,12 @@ const AnimatedBox = () => {
     setIsToggled(!isToggled);
   };
 
+  const [ref, bounds] = useMeasure();
+
   return (
-    <div className="flex w-full flex-col justify-center">
-      <div className="mb-4 flex w-full flex-col items-center text-black">
-        <Select onValueChange={setEasing}>
+    <div className="flex w-full flex-col justify-center gap-4">
+      <div className="flex w-full flex-col items-center text-black">
+        <Select onValueChange={setEasing} value={easing}>
           <SelectTrigger className="w-[180px]">
             <SelectValue
               placeholder="Select an easing type"
@@ -65,7 +60,11 @@ const AnimatedBox = () => {
             <SelectGroup>
               <SelectLabel>Easing Types</SelectLabel>
               {easingTypes.map((type) => (
-                <SelectItem className="color-black" value={type.value}>
+                <SelectItem
+                  key={type.name}
+                  className="color-black"
+                  value={type.value}
+                >
                   {type.name}
                 </SelectItem>
               ))}
@@ -73,18 +72,16 @@ const AnimatedBox = () => {
           </SelectContent>
         </Select>
       </div>
-      <motion.div
-        className="h-16 w-16 bg-purple-600 transition-transform duration-300"
-        style={{ transitionTimingFunction: easing }}
-        animate={{ x: isToggled ? "calc(100vw - 64px)" : 0 }}
-      />
+      <div className="w-full" ref={ref}>
+        <motion.div
+          className="h-16 w-16 rounded-md bg-purple-600 transition-transform duration-300"
+          style={{ transitionTimingFunction: easing }}
+          // Taking away the width of the box
+          animate={{ x: isToggled ? `calc(${bounds.width - 64}px)` : 0 }}
+        />
+      </div>
       <div className="flex w-full flex-col items-center">
-        <button
-          onClick={toggleBox}
-          className="mt-4 rounded bg-purple-600 p-2 text-white"
-        >
-          Toggle Position
-        </button>
+        <Button onClick={toggleBox}>Toggle Position</Button>
       </div>
     </div>
   );
