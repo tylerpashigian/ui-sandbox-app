@@ -96,7 +96,7 @@ const TrashAnimation = () => {
                         layoutId={`image-${image}`}
                         className="rounded-xl"
                         alt="A guy"
-                        src={`https://animations-on-the-web-git-how-i-use-3066e1-emilkowalski-s-team.vercel.app/how-i-use-framer-motion/why-framer-motion/${image}.webp`}
+                        src={`https://animations.dev/how-i-use-framer-motion/why-framer-motion/${image}.webp`}
                         height={100}
                         width={100}
                       />
@@ -229,7 +229,7 @@ const TrashAnimation = () => {
                       layoutId={`image-${image}`}
                       alt="A guy"
                       className="rounded"
-                      src={`https://animations-on-the-web-git-how-i-use-3066e1-emilkowalski-s-team.vercel.app/how-i-use-framer-motion/why-framer-motion/${image}.webp`}
+                      src={`https://animations.dev/how-i-use-framer-motion/why-framer-motion/${image}.webp`}
                       height={65}
                       width={65}
                       style={{
